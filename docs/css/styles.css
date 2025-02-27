@@ -469,64 +469,88 @@ body {
 }
 
 
-/* Sección de Contacto Mejorada */
-.contact-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
-}
-
-.contact-card {
-  background-color: var(--color-canvas-subtle);
-  border: 1px solid var(--color-border-default);
-  border-radius: 8px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: transform 0.2s, border-color 0.2s;
-  width: 100%;
-  max-width: 400px;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.contact-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-accent-fg);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.contact-icon {
-  font-size: 24px;
-  color: var(--color-accent-fg);
-}
-
-.contact-info {
-  font-size: 18px;
-  color: var(--color-fg-default);
-}
-
-/* Botón para Descargar CV */
-.download-cv {
-  background-color: var(--color-accent-fg);
-  color: #ffffff;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
-  text-decoration: none;
-  display: inline-block;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.download-cv:hover {
-  background-color: var(--color-accent-emphasis);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
+/* Modificar los estilos de la sección de contacto para que los contenedores 
+   tengan el mismo tamaño que los de otras secciones */
+   .contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .contact-card {
+    background-color: var(--color-canvas-subtle);
+    border: 1px solid var(--color-border-default);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s, border-color 0.2s;
+    width: 100%;
+    max-width: 100%;
+    text-decoration: none;
+    color: var(--color-fg-default);
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent-fg);
+  }
+  
+  .contact-icon {
+    font-size: 24px;
+    min-width: 24px;
+    text-align: center;
+    color: var(--color-accent-fg);
+  }
+  
+  .contact-info {
+    font-size: 16px;
+    color: var(--color-fg-default);
+  }
+  
+  /* Botón para Descargar CV */
+  .download-cv {
+    background-color: var(--color-accent-fg);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+  
+  .download-cv:hover {
+    background-color: var(--color-accent-emphasis);
+    transform: translateY(-3px);
+  }
+  
+  /* Estilos para los iconos de redes sociales */
+  .contact-icon.github::before {
+    content: '\f09b';
+    font-family: 'Font Awesome 5 Brands';
+  }
+  
+  .contact-icon.linkedin::before {
+    content: '\f08c';
+    font-family: 'Font Awesome 5 Brands';
+  }
+  
+  .contact-icon.email::before {
+    content: '\f0e0';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+  
+  .contact-icon.location::before {
+    content: '\f3c5';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
