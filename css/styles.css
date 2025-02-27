@@ -1,0 +1,532 @@
+:root {
+  --color-canvas-default: #0d1117;
+  --color-canvas-subtle: #161b22;
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-fg-default: #c9d1d9;
+  --color-fg-muted: #8b949e;
+  --color-accent-fg: #58a6ff;
+  --color-accent-emphasis: #1f6feb;
+  --color-success-fg: #3fb950;
+  --color-danger-fg: #f85149;
+  --color-primer-shadow-inset: 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+}
+
+body {
+  line-height: 1.5;
+  color: var(--color-fg-default);
+  background-color: var(--color-canvas-default);
+  display: flex;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--color-canvas-subtle);
+  border-right: 1px solid var(--color-border-default);
+  padding: 20px;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-default);
+  margin-bottom: 15px;
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px 15px;
+  color: var(--color-fg-default);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: var(--color-border-muted);
+  color: var(--color-accent-fg);
+}
+
+.nav-link.active {
+  background-color: var(--color-accent-emphasis);
+  color: #ffffff;
+}
+
+/* Main Content Styles */
+.main-container {
+  margin-left: 250px;
+  padding: 24px;
+  width: calc(100% - 250px);
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* Box Styles */
+.box {
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+
+/* Project Card Styles */
+.project-card {
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: var(--color-canvas-subtle);
+  transition: border-color 0.2s;
+}
+
+.project-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-accent-fg);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 2em;
+  background-color: var(--color-success-fg);
+  color: var(--color-canvas-default);
+  margin-left: 8px;
+}
+
+/* Estilo para el estado Finished */
+.status-badge.Finished {
+  background-color: var(--color-primary);
+  color: red;
+}
+
+/* Estilo para el estado Active */
+.status-badge.Active {
+  background-color: var(--color-warning);
+  color: green;
+}
+
+/* Experience Styles */
+.experience-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.date {
+  color: var(--color-fg-muted);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Contact Styles */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-fg-default);
+  text-decoration: none;
+}
+
+.contact-item:hover {
+  color: var(--color-accent-fg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-right: none;
+      border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .main-container {
+      margin-left: 0;
+      width: 100%;
+  }
+
+  body {
+      flex-direction: column;
+  }
+
+  .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+  }
+
+  .nav-item {
+      margin-bottom: 0;
+  }
+}
+
+.section {
+  display: none; /* Ocultar todas las secciones por defecto */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.section.active {
+  display: block; /* Mostrar solo la sección activa */
+  opacity: 1;
+}
+
+/* Agregar animación para el cambio de sección */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.section.active {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+
+/* Estilos para la sección Acerca de mí */
+.about-intro {
+  margin-bottom: 2rem;
+  padding: 2rem !important;
+}
+
+.about-intro h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent-fg);
+}
+
+.about-intro p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-fg-muted);
+}
+
+.about-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Ajusta el espacio entre los elementos como desees */
+}
+
+
+.about-card {
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-fg);
+}
+
+.card-header {
+  background-color: var(--color-border-muted);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: var(--color-fg-default);
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+/* Estilos para la sección de certificaciones */
+.certifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cert-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  background-color: var(--color-canvas-default);
+  transition: background-color 0.2s;
+}
+
+.cert-item:hover {
+  background-color: var(--color-border-muted);
+}
+
+.cert-icon {
+  font-size: 1.2rem;
+}
+
+/* Estilos para la sección de Hard Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.skill-item-new {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background-color: var(--color-canvas-default);
+  border-radius: 6px;
+}
+
+.skill-icon {
+  font-size: 1.2rem;
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  color: var(--color-fg-muted);
+}
+
+.skill-bar {
+  height: 4px;
+  background-color: var(--color-border-muted);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--color-accent-fg);
+  width: var(--skill-width);
+  border-radius: 2px;
+}
+
+/* Estilos para la sección de Soft Skills */
+.soft-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.soft-skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  background-color: var(--color-canvas-default);
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.soft-skill-item:hover {
+  transform: translateY(-2px);
+}
+
+.soft-skill-icon {
+  font-size: 1.2rem;
+}
+
+/* Estilos para enlaces */
+.university-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-accent-fg);
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+.university-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .about-grid {
+      grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-grid,
+  .soft-skills-grid {
+      grid-template-columns: 1fr;
+  }
+}
+
+/* Sección de Experiencia Profesional con Tarjetas */
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.experience-card {
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-fg);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.experience-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-accent-fg);
+}
+
+.experience-company {
+  font-size: 16px;
+  color: var(--color-fg-muted);
+}
+
+.experience-date {
+  font-size: 14px;
+  color: var(--color-fg-muted);
+  margin-bottom: 8px;
+}
+
+.experience-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* Sección de Contacto Mejorada */
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.contact-card {
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s, border-color 0.2s;
+  width: 100%;
+  max-width: 400px;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-fg);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contact-icon {
+  font-size: 24px;
+  color: var(--color-accent-fg);
+}
+
+.contact-info {
+  font-size: 18px;
+  color: var(--color-fg-default);
+}
+
+/* Botón para Descargar CV */
+.download-cv {
+  background-color: var(--color-accent-fg);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-cv:hover {
+  background-color: var(--color-accent-emphasis);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
